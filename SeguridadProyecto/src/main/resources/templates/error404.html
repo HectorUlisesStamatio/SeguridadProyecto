@@ -1,0 +1,64 @@
+
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== BOXICONS ===============-->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" th:href="@{/images/favicon.png}"  type="image/x-icon">
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Error 404</title>
+</head>
+<body>
+
+
+<!--==================== HEADER ====================-->
+<header class="header">
+    <nav class="nav container">
+        <a href="#" class="nav__logo">
+            SIGUEHA
+        </a>
+
+
+
+    </nav>
+</header>
+
+<!--==================== MAIN ====================-->
+<main class="main">
+    <!--==================== HOME ====================-->
+    <section class="home">
+        <div class="home__container container">
+            <div class="home__data">
+                <span class="home__subtitle">Error 404</span>
+                <h1 class="home__title">Algo ocurrió</h1>
+                <p class="home__description">
+                    La pagina que buscas <br> no fue encontrada.
+                </p>
+                <a th:href="@{/}" class="home__button">
+                    Volver al inicio
+                </a>
+            </div>
+
+            <div class="home__img">
+                <img src="https://em-content.zobj.net/source/microsoft-teams/337/ghost_1f47b.png" alt="">
+                <div class="home__shadow"></div>
+            </div>
+        </div>
+
+        <footer class="home__footer">
+            <span>(777) 599-6014</span>
+            <span>|</span>
+            <span>ayuda@sigueha.com</span>
+        </footer>
+    </section>
+</main>
+
+<!--=============== SCROLLREVEAL ===============-->
+<script type="text/javascript" th:src="@{/js/scrollreveal.js}"></script>
+<!--=============== MAIN JS ===============-->
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</body>
+</html>
