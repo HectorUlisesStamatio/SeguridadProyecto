@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org"  lang="en" dir="ltr">
+<html  xmlns:th="http://www.thymeleaf.org"  lang="en" dir="ltr" ng-app="mensajes">
 <head>
     <meta charset="utf-8">
     <title>Login | SIGUEHA</title>
     <link rel="shortcut icon" th:href="@{/images/favicon.png}"  type="image/x-icon">
     <link rel="stylesheet" th:href="@{/css/loginStyle.css}" >
+    <link rel="stylesheet" th:href="@{/css/sweetalert.css}" >
 </head>
-<body>
+<body ng-controller="loginController">
 <div class="center">
     <h1>Iniciar Sesión</h1>
     <form method="post">
@@ -21,11 +22,16 @@
             <label>Contraseña</label>
         </div>
         <input type="submit" value="Iniciar Sesión">
+        <button type="button" ng-click="showAlert()">Mostrar alerta</button>
         <div class="signup_link">
             ¿No tienes cuenta? <a th:href="@{/registro}" >Registrate</a>
         </div>
     </form>
 </div>
 
+<script th:src="@{/js/angular.min.js}"></script>
+<script th:src="@{/js/SweetAlert2.min.js}"></script>
+<script th:src="@{/js/SweetAlert.min.js}"></script>
+<script th:src="@{/js/control/jsLogin.js}"></script>
 </body>
 </html>
