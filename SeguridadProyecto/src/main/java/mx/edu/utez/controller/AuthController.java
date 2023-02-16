@@ -25,6 +25,21 @@ public class AuthController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
+
+//    @PostMapping("/login")
+//    void iniciarSesion(@RequestBody @Validated Usuario usuario) {
+//        boolean emailExiste = usuarioRepository.existsByEmail(usuario.getEmail());
+//
+//        if (emailExiste) {
+//            throw new BadRequestException("El email ya fue registrado para otro usuario.");
+//        }
+//        String password = passwordEncoder.encode(usuario.getPasswordPlain());
+//        usuario.setPassword(password);
+//        usuario.setRol(Usuario.Rol.USUARIO);
+//        usuario.setStatus(1);
+//        usuarioRepository.save(usuario);
+//    }
+
     @PostMapping("/registrar")
     void registrarUsuario(@RequestBody @Validated Usuario usuario) {
         boolean emailExiste = usuarioRepository.existsByEmail(usuario.getEmail());

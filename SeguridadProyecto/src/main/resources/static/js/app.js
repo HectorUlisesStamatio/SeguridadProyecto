@@ -1,0 +1,1 @@
+let app = angular.module('mensajes',[ 'oitozero.ngSweetAlert', 'smart-table']);

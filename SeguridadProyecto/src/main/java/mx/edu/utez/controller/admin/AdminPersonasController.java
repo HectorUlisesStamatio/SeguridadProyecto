@@ -27,6 +27,7 @@ public class AdminPersonasController {
     @GetMapping("/listar")
     List<Personas> listar(){
         List<Personas> personas = personasRepository.findAll();
+        System.out.println(personas.size());
         return personas;
     }
 

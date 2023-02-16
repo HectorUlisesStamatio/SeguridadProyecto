@@ -10,7 +10,7 @@
 <body ng-controller="loginController">
 <div class="center">
     <h1>Iniciar Sesión</h1>
-    <form method="post">
+    <form method="post" th:action="@{/panel}">
         <div class="txt_field">
             <input type="text" required>
             <span></span>
@@ -22,16 +22,18 @@
             <label>Contraseña</label>
         </div>
         <input type="submit" value="Iniciar Sesión">
-        <button type="button" ng-click="showAlert()">Mostrar alerta</button>
         <div class="signup_link">
             ¿No tienes cuenta? <a th:href="@{/registro}" >Registrate</a>
         </div>
     </form>
 </div>
 
+
 <script th:src="@{/js/angular.min.js}"></script>
 <script th:src="@{/js/SweetAlert2.min.js}"></script>
 <script th:src="@{/js/SweetAlert.min.js}"></script>
+<script th:src="@{/js/app.js}"></script>
+<script th:src="@{/js/requestFactory.js}"></script>
 <script th:src="@{/js/control/jsLogin.js}"></script>
 </body>
 </html>
