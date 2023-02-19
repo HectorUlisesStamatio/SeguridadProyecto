@@ -41,7 +41,8 @@
                                         <td ng-bind="persona.email"></td>
                                         <td ng-bind="persona.fechaCreacion | date: 'dd-mm-yyyy'"></td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-pen"></i></button>
+                                            <button type="button" class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#mdlModificarPersona"
+                                            data-backdrop="static" data-keyboard="false" ng-click="mdlModificarPersona(persona)"><i class="fa-solid fa-pen"></i></button>
                                             <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
                                             <button type="button" class="btn btn-outline-warning"><i class="fa-solid fa-eye"></i></button>
                                         </td>
@@ -75,9 +76,48 @@
     </div>
 </div>
 
+<!-- Inicio mdlModificarUsuario -->
+<div class="modal fade" id="mdlModificarPersona" tabindex="-1" aria-labelledby="mdlModificarPersona" role="dialog" >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdlLabelModificarPersona">Modificar persona</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="uForm" name="uForm">
+                    <div class="mb-3">
+                        <label for="pNombre" class="form-label">Nombre: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="pNombre" name="pNombre" max="255" min="1" ng-model="personaAux.nombre" required>
+                        <span ng-if="uForm.pNombre.$touched && uForm.pNombre.$invalid" class="text-muted">El nombre debe contener entre 1-255 caracteres</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pPrimerApellido" class="form-label">Primer apellido: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="pPrimerApellido" name="pPrimerApellido" max="255" min="1" ng-model="personaAux.apellidoPaterno" required>
+                        <span ng-if="uForm.pPrimerApellido.$touched && uForm.pPrimerApellido.$invalid" class="text-muted">El primer apellido debe contener entre 1-255 caracteres</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pSegundoApellido" class="form-label">Segundo apellido:</label>
+                        <input type="text" class="form-control" id="pSegundoApellido" name="pSegundoApellido" max="255" ng-model="personaAux.apellidoMaterno">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pEmail" class="form-label">Email: <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="pEmail" name="pEmail" max="255" min="1" ng-model="personaAux.email" required>
+                        <span ng-if="uForm.pEmail.$touched && uForm.pEmail.$invalid" class="text-muted">El email no es válido, debe contener entre 1-255 caracteres y contener un dominio</span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-warning" ng-if="uForm.$invalid || uForm.$pristine" disabled>Modificar</button>
+                <button type="button" class="btn btn-warning" ng-if="uForm.$valid && uForm.$dirty" ng-click="mdlModificarPersonaActualizar(personaAux.id)">Modificar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin mdlModificarUsuario -->
 
-
-<link rel="stylesheet" th:href="@{/css/bootstrap/js/bootstrap.bundle.min.js}" >
+<script th:src="@{/css/bootstrap/js/bootstrap.bundle.min.js}" ></script>
 <script th:src="@{/js/angular.min.js}"></script>
 <script th:src="@{/js/SweetAlert2.min.js}"></script>
 <script th:src="@{/js/SweetAlert.min.js}"></script>

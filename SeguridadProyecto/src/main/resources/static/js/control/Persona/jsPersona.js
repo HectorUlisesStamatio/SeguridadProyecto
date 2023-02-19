@@ -1,7 +1,12 @@
 app.controller('gestionPersonasController', ['$scope', 'SweetAlert', 'requestService', function($scope, SweetAlert, requestService) {
     $scope.registroPorPagina = 10;
     $scope.currentPage = 1;
-    $scope.personas = []
+    $scope.personas = [];
+    $scope.personaAux = {};
+
+    let mdlModificarPersona = new bootstrap.Modal(document.getElementById('mdlModificarPersona'), {
+        keyboard: false
+    })
 
     $scope.rembemberCurrentPage = (pagina) =>{
         $scope.currentPage = pagina;
@@ -10,12 +15,43 @@ app.controller('gestionPersonasController', ['$scope', 'SweetAlert', 'requestSer
     $scope.consultarPersona = () =>{
         requestService.getRequest("/api/admin/personas/listar",
             (success) => {
-                    $scope.personas = success.data,
+                    $scope.personas = success.data;
                     $scope.personas =  $scope.personas.map(persona => ({...persona, nombre: persona.nombre + " " + persona.apellidoPaterno + " " +  persona.apellidoMaterno }))
             },
             (error) => $scope.errorhttp(error.status)
         )
 
+    }
+
+    $scope.mdlModificarPersona = (persona) =>{
+        requestService.getRequest("/api/admin/personas/"+persona.id,
+            (success) => {
+                $scope.personaAux = success.data;
+            },
+            (error) => {
+                mdlModificarPersona.hide()
+                $scope.errorhttp(error.status)
+            }
+        )
+    }
+
+    $scope.mdlModificarPersonaActualizar = (id) =>{
+        requestService.putRequest(
+            "/api/admin/personas/"+id,
+            $scope.personaAux,
+            (success) => {
+                mdlModificarPersona.hide()
+                SweetAlert.swal({
+                    title: "Alerta de exito",
+                    text: "Actualización exitosa.",
+                    type: "success",
+                });
+                $scope.consultarPersona();
+            },
+            (error) => {
+                $scope.errorhttp(error.status)
+            }
+        )
     }
 
 
