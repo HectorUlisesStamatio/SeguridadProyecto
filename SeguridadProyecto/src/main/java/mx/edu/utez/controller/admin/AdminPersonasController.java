@@ -2,6 +2,7 @@ package mx.edu.utez.controller.admin;
 
 
 import mx.edu.utez.model.Personas;
+import mx.edu.utez.model.Usuario;
 import mx.edu.utez.repo.PersonasRepository;
 import mx.edu.utez.web.dto.PersonasDTO;
 import org.modelmapper.ModelMapper;
@@ -31,6 +32,13 @@ public class AdminPersonasController {
         return personas;
     }
 
+    @GetMapping("/{id}")
+    Personas get(@PathVariable Integer id){
+        Personas persona = personasRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+        return persona;
+    }
+
     @PostMapping
      ResponseEntity<Personas> crear(@RequestBody @Validated PersonasDTO personasDTO){
             try{
@@ -43,7 +51,7 @@ public class AdminPersonasController {
 
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     Personas actualizar(@PathVariable Integer id,@RequestBody @Validated PersonasDTO personasDTO){
         Personas personasFromDb = personasRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         ModelMapper mapper = new ModelMapper();
