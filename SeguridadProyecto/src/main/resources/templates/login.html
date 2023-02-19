@@ -22,12 +22,12 @@
             <label>Contraseña</label>
         </div>
         <input type="submit" value="Iniciar Sesión">
+        <button type="button" ng-click="showAlert()">Mostrar alerta</button>
         <div class="signup_link">
             ¿No tienes cuenta? <a th:href="@{/registro}" >Registrate</a>
         </div>
     </form>
 </div>
-
 
 <script th:src="@{/js/angular.min.js}"></script>
 <script th:src="@{/js/SweetAlert2.min.js}"></script>
