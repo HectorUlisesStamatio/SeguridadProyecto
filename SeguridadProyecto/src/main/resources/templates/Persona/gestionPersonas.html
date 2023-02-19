@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mensajes">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Personas</title>
+    <link rel="shortcut icon" th:href="@{/images/favicon.png}"  type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/sweetalert.css}" >
+    <link rel="stylesheet" th:href="@{/css/bootstrap/css/bootstrap.min.css}" >
+    <link rel="stylesheet" th:href="@{/css/myStyles.css}" >
+    <link rel="stylesheet" th:href="@{/css/loginStyle.css}" >
+    <link rel="stylesheet" th:href="@{/css/fontawesome/css/all.css}">
+</head>
+<body ng-controller="gestionPersonasController">
+<div class="container" ng-init="consultarPersona()">
+    <div class="row align-items-center">
+        <div class="col">
+           <div class="card m-5 blockquote">
+               <div class="card-header">
+                   <div class="d-flex justify-content-between">
+                       <h3>Personas</h3>
+                       <button class="btn btn-outline-success"><i class="fa-solid fa-plus"></i></button>
+                   </div>
+               </div>
+               <div class="card-header">
+                   <div class="row">
+                       <div class="col table-responsive">
+                           <table class= "table table-bordered table-striped text-center"
+                                  st-table="personasTabla"
+                                  st-safe-src="personas">
+                               <thead class="thead">
+                                     <th>#</th>
+                                     <th>Nombre</th>
+                                     <th>Email</th>
+                                     <th>Fecha creación</th>
+                                     <th>Acciones</th>
+                               </thead>
+                               <tbody>
+                                    <tr ng-repeat="persona in personasTabla">
+                                        <td ng-bind="((currentPage - 1) * registroPorPagina) + $index + 1"></td>
+                                        <td ng-bind="persona.nombre "></td>
+                                        <td ng-bind="persona.email"></td>
+                                        <td ng-bind="persona.fechaCreacion | date: 'dd-mm-yyyy'"></td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-pen"></i></button>
+                                            <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                                            <button type="button" class="btn btn-outline-warning"><i class="fa-solid fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+
+                               </tbody>
+
+                               <tfoot ng-if="personasTabla.length == 0">
+                               <tr class="text-center">
+                                   <td colspan="4">
+                                       <h5>No se encontraron personas en el sistema.</h5>
+                                   </td>
+                               </tr>
+                               </tfoot>
+
+                               <tfoot ng-if="personas.length >= 9 && personasTabla.length != 0" style="cursor:pointer;">
+                               <tr>
+                                   <td colspan="4" class="text-center">
+                                       <div st-pagination="" st-page-change="rembemberCurrentPage(newPage)"
+                                            st-items-by-page="registroPorPagina"
+                                            st-displayed-pages="10"></div>
+                                   </td>
+                               </tr>
+                               </tfoot>
+                           </table>
+                       </div>
+                   </div>
+               </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+
+
+<link rel="stylesheet" th:href="@{/css/bootstrap/js/bootstrap.bundle.min.js}" >
+<script th:src="@{/js/angular.min.js}"></script>
+<script th:src="@{/js/SweetAlert2.min.js}"></script>
+<script th:src="@{/js/SweetAlert.min.js}"></script>
+<script th:src="@{/js/smart-table.min.js}"></script>
+<script th:src="@{/js/app.js}"></script>
+<script th:src="@{/js/requestFactory.js}"></script>
+<script th:src="@{/js/control/Persona/jsPersona.js}"></script>
+
+</body>
+</html>

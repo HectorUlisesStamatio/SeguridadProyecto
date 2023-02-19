@@ -27,6 +27,12 @@ public class IndexController {
         return "error403";
     }
 
+
+    @GetMapping("/panel")
+    public String gestionPersonas(){
+        return "Persona/gestionPersonas";
+    }
+
     @GetMapping("/api/admin/panel")
     public String panel(){
         return "panel";

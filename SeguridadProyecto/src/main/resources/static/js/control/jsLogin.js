@@ -1,6 +1,6 @@
-let app = angular.module('mensajes',[ 'oitozero.ngSweetAlert']);
+app.controller('loginController', ['$scope', 'SweetAlert', 'requestService', function($scope, SweetAlert, requestService) {
+    console.log(requestService)
 
-app.controller('loginController', ['$scope', 'SweetAlert', function($scope, SweetAlert) {
     $scope.mensaje = "Hola Mundo"
     $scope.showAlert = () =>{
         console.log("Entro aqui")
