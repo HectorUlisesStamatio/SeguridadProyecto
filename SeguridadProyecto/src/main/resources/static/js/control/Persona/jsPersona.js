@@ -2,12 +2,23 @@ app.controller('gestionPersonasController', ['$scope', 'SweetAlert', 'requestSer
     $scope.registroPorPagina = 10;
     $scope.currentPage = 1;
     $scope.personas = [];
+    $scope.persona = {}
     $scope.personaAux = {};
     $scope.personaDetalle = {};
 
     let mdlModificarPersona = new bootstrap.Modal(document.getElementById('mdlModificarPersona'), {
         keyboard: false
     })
+    let mdlRegistrarPersona = new bootstrap.Modal(document.getElementById('mdlRegistrarPersona'), {
+            keyboard: false
+    })
+
+    $scope.resetForm = () =>{
+        $scope.createForm.$setPristine();
+        $scope.createForm.$setSubmitted();
+        $scope.createForm.$setUntouched();
+        $scope.createForm.$setDirty();
+    }
 
 
     $scope.rembemberCurrentPage = (pagina) =>{
@@ -101,6 +112,27 @@ app.controller('gestionPersonasController', ['$scope', 'SweetAlert', 'requestSer
                 $scope.personaDetalle = angular.copy(success.data);
             },
             (error) => {
+                $scope.errorhttp(error.status)
+            }
+        )
+    }
+
+    $scope.mdlRegistrarPersona = () =>{
+        requestService.postRequest("/api/admin/personas/",
+            $scope.persona,
+            (success) => {
+                mdlRegistrarPersona.hide()
+                SweetAlert.swal({
+                    title: "Alerta de éxito",
+                    text: "Registro exitoso.",
+                    type: "success",
+                });
+                $scope.persona = {}
+                $scope.resetForm()
+                $scope.consultarPersona();
+            },
+            (error) => {
+                mdlRegistrarPersona.hide()
                 $scope.errorhttp(error.status)
             }
         )

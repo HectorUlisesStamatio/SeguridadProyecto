@@ -38,7 +38,7 @@ public class AdminPersonasController {
         return persona;
     }
 
-    @PostMapping
+    @PostMapping("/")
      ResponseEntity<Personas> crear(@RequestBody @Validated PersonasDTO personasDTO){
             try{
                 Personas personas = new ModelMapper().map(personasDTO, Personas.class);

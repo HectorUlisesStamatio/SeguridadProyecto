@@ -18,7 +18,8 @@
                <div class="card-header">
                    <div class="d-flex justify-content-between">
                        <h3>Personas</h3>
-                       <button class="btn btn-outline-success"><i class="fa-solid fa-plus"></i></button>
+                       <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#mdlRegistrarPersona"
+                               data-backdrop="static" data-keyboard="false"><i class="fa-solid fa-plus"></i></button>
                    </div>
                </div>
                <div class="card-header">
@@ -117,7 +118,46 @@
     </div>
 </div>
 <!-- Fin mdlModificarUsuario -->
-
+<!-- Inicio mdlModificarUsuario -->
+<div class="modal fade" id="mdlRegistrarPersona" tabindex="-1" aria-labelledby="mdlRegistrarPersona" role="dialog" >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdlLabelRegistrarPersona">Registrar persona</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                    <form id="createForm" name="createForm">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" max="255" min="1" ng-model="persona.nombre" required>
+                        <span ng-if="createForm.nombre.$touched && createForm.nombre.$invalid" class="text-muted">El nombre debe contener entre 1-255 caracteres</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="primerApellido" class="form-label">Primer apellido: <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="primerApellido" name="primerApellido" max="255" min="1" ng-model="persona.apellidoPaterno" required>
+                        <span ng-if="createForm.primerApellido.$touched && createForm.primerApellido.$invalid" class="text-muted">El primer apellido debe contener entre 1-255 caracteres</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="segundoApellido" class="form-label">Segundo apellido:</label>
+                        <input type="text" class="form-control" id="segundoApellido" name="segundoApellido" max="255" ng-model="persona.apellidoMaterno">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email: <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" max="255" min="1" ng-model="persona.email" required>
+                        <span ng-if="createForm.email.$touched && createForm.email.$invalid" class="text-muted">El email no es válido, debe contener entre 1-255 caracteres y contener un dominio</span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" ng-if="createForm.$invalid || createForm.$pristine" disabled>Guardar</button>
+                <button type="button" class="btn btn-success" ng-if="createForm.$valid && createForm.$dirty" ng-click="mdlRegistrarPersona()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin mdlModificarUsuario -->
 
 <!-- Inicio mdlModificarUsuario -->
 <div class="modal fade" id="mdlDetallePersona" tabindex="-1" aria-labelledby="mdlDetallePersona" role="dialog" >
