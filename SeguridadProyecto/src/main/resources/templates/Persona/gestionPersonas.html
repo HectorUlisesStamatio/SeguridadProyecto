@@ -41,10 +41,11 @@
                                         <td ng-bind="persona.email"></td>
                                         <td ng-bind="persona.fechaCreacion | date: 'dd-MM-yyyy'"></td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary me-2"  data-bs-toggle="modal" data-bs-target="#mdlModificarPersona"
+                                            <button type="button" class="btn btn-outline-primary me-2 mb-2"  data-bs-toggle="modal" data-bs-target="#mdlModificarPersona"
                                             data-backdrop="static" data-keyboard="false" ng-click="mdlModificarPersona(persona)"><i class="fa-solid fa-pen"></i></button>
-                                            <button type="button" class="btn btn-outline-danger me-2" ng-click="mdlEliminarPersona(persona)"><i class="fa-solid fa-trash"></i></button>
-                                            <button type="button" class="btn btn-outline-warning me-2"><i class="fa-solid fa-eye"></i></button>
+                                            <button type="button" class="btn btn-outline-danger me-2 mb-2" ng-click="mdlEliminarPersona(persona)"><i class="fa-solid fa-trash"></i></button>
+                                            <button type="button" class="btn btn-outline-warning me-2 mb-2" data-bs-toggle="modal" data-bs-target="#mdlDetallePersona"
+                                                    data-backdrop="static" data-keyboard="false" ng-click="mdlDetallePersona(persona)"><i class="fa-solid fa-eye"></i></button>
                                         </td>
                                     </tr>
 
@@ -116,6 +117,49 @@
     </div>
 </div>
 <!-- Fin mdlModificarUsuario -->
+
+
+<!-- Inicio mdlModificarUsuario -->
+<div class="modal fade" id="mdlDetallePersona" tabindex="-1" aria-labelledby="mdlDetallePersona" role="dialog" >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdlLabelDetallePersona">Detalle persona</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-3">
+                                <label class="d-block fw-bold">Nombre: </label>
+                                <span  class="d-block" ng-bind="personaDetalle.nombre"></span>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                                <label class="d-block fw-bold">Apellido Paterno: </label>
+                                <span class="d-block" ng-bind="personaDetalle.apellidoPaterno"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-3">
+                                <label class="d-block fw-bold">Apellido Materno: </label>
+                                <span class="d-block " ng-bind="personaDetalle.apellidoMaterno"></span>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                                <label class="d-block fw-bold">Email: </label>
+                                <span class="d-block" ng-bind="personaDetalle.email"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin mdlModificarUsuario -->
+
+
 
 <script th:src="@{/css/bootstrap/js/bootstrap.bundle.min.js}" ></script>
 <script th:src="@{/js/angular.min.js}"></script>

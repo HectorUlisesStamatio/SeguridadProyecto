@@ -3,10 +3,12 @@ app.controller('gestionPersonasController', ['$scope', 'SweetAlert', 'requestSer
     $scope.currentPage = 1;
     $scope.personas = [];
     $scope.personaAux = {};
+    $scope.personaDetalle = {};
 
     let mdlModificarPersona = new bootstrap.Modal(document.getElementById('mdlModificarPersona'), {
         keyboard: false
     })
+
 
     $scope.rembemberCurrentPage = (pagina) =>{
         $scope.currentPage = pagina;
@@ -92,6 +94,19 @@ app.controller('gestionPersonasController', ['$scope', 'SweetAlert', 'requestSer
         });
 
     }
+
+    $scope.mdlDetallePersona = (persona) =>{
+        requestService.getRequest("/api/admin/personas/"+persona.id,
+            (success) => {
+                $scope.personaDetalle = angular.copy(success.data);
+            },
+            (error) => {
+                $scope.errorhttp(error.status)
+            }
+        )
+    }
+
+
 
     $scope.errorhttp = function (status) {
         switch (Number(status)) {
