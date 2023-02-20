@@ -42,7 +42,7 @@ app.controller('gestionPersonasController', ['$scope', 'SweetAlert', 'requestSer
             (success) => {
                 mdlModificarPersona.hide()
                 SweetAlert.swal({
-                    title: "Alerta de exito",
+                    title: "Alerta de éxito",
                     text: "Actualización exitosa.",
                     type: "success",
                 });
@@ -54,6 +54,44 @@ app.controller('gestionPersonasController', ['$scope', 'SweetAlert', 'requestSer
         )
     }
 
+
+    $scope.mdlEliminarPersona = (persona) =>{
+
+        SweetAlert.swal({
+            title: "Eliminación de persona",
+            text: `¿Estás seguro de eliminar a ${persona.nombre}?`,
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Aceptar",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: true,
+        }, function (isConfirm) {
+            if (isConfirm) {
+                /*Obtiene los métodos*/
+                requestService.deleteRequest(
+                    "/api/admin/personas/" + persona.id,
+
+                    /*Si la petición se ejecutó exitosamente*/
+                    (success) => {
+                        SweetAlert.swal({
+                            title: "Alerta de éxito",
+                            text: "Eliminación exitosa.",
+                            type: "success",
+                        });
+                        $scope.consultarPersona();
+                    },
+                    (error) => {
+                        /*Ejecuta el método errorhttp
+                        * y dependiendo del status es el mensaje que mostará*/
+                        $scope.errorhttp(error.status)
+                    }
+                )
+            }
+        });
+
+    }
 
     $scope.errorhttp = function (status) {
         switch (Number(status)) {

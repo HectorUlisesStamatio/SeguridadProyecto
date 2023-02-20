@@ -28,7 +28,6 @@ public class AdminPersonasController {
     @GetMapping("/listar")
     List<Personas> listar(){
         List<Personas> personas = personasRepository.findAll();
-        System.out.println(personas.size());
         return personas;
     }
 
@@ -60,7 +59,7 @@ public class AdminPersonasController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     void eliminar(@PathVariable Integer id){
         Personas personas = personasRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         personasRepository.delete(personas);

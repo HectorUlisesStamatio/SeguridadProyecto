@@ -39,12 +39,12 @@
                                         <td ng-bind="((currentPage - 1) * registroPorPagina) + $index + 1"></td>
                                         <td ng-bind="persona.nombre "></td>
                                         <td ng-bind="persona.email"></td>
-                                        <td ng-bind="persona.fechaCreacion | date: 'dd-mm-yyyy'"></td>
+                                        <td ng-bind="persona.fechaCreacion | date: 'dd-MM-yyyy'"></td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#mdlModificarPersona"
+                                            <button type="button" class="btn btn-outline-primary me-2"  data-bs-toggle="modal" data-bs-target="#mdlModificarPersona"
                                             data-backdrop="static" data-keyboard="false" ng-click="mdlModificarPersona(persona)"><i class="fa-solid fa-pen"></i></button>
-                                            <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                                            <button type="button" class="btn btn-outline-warning"><i class="fa-solid fa-eye"></i></button>
+                                            <button type="button" class="btn btn-outline-danger me-2" ng-click="mdlEliminarPersona(persona)"><i class="fa-solid fa-trash"></i></button>
+                                            <button type="button" class="btn btn-outline-warning me-2"><i class="fa-solid fa-eye"></i></button>
                                         </td>
                                     </tr>
 
@@ -52,7 +52,7 @@
 
                                <tfoot ng-if="personasTabla.length == 0">
                                <tr class="text-center">
-                                   <td colspan="4">
+                                   <td colspan="5">
                                        <h5>No se encontraron personas en el sistema.</h5>
                                    </td>
                                </tr>
@@ -60,7 +60,7 @@
 
                                <tfoot ng-if="personas.length >= 9 && personasTabla.length != 0" style="cursor:pointer;">
                                <tr>
-                                   <td colspan="4" class="text-center">
+                                   <td colspan="5" class="text-center">
                                        <div st-pagination="" st-page-change="rembemberCurrentPage(newPage)"
                                             st-items-by-page="registroPorPagina"
                                             st-displayed-pages="10"></div>
