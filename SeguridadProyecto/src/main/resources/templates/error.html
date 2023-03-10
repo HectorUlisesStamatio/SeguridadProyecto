@@ -13,6 +13,7 @@
     <title th:if="${status == 403}">Error 403</title>
     <title th:if="${status == 404}">Error 404</title>
     <title th:if="${status == 500}">Error 500</title>
+    <title th:if="${status != 500 && status != 404 && status != 403}">Error Desconocido</title>
 </head>
 <body>
 
@@ -37,9 +38,11 @@
                 <span class="home__subtitle" th:if="${status == 403}">Error 403</span>
                 <span class="home__subtitle" th:if="${status == 404}">Error 404</span>
                 <span class="home__subtitle" th:if="${status == 500}">Error 500</span>
+                <span class="home__subtitle" th:if="${status != 500 && status != 404 && status != 403}">Error Desconocido</span>
                 <h1 class="home__title" th:if="${status == 403}">Acceso Denegado</h1>
                 <h1 class="home__title" th:if="${status == 404}">Algo Ocurrió</h1>
                 <h1 class="home__title" th:if="${status == 500}">Error Inesperado</h1>
+                <h1 class="home__title" th:if="${status != 500 && status != 404 && status != 403}">Error Desconocido</h1>
                 <p class="home__description" th:if="${status == 403}">
                     Parece que no cuentas con los permisos<br> necesarios para estar aquí.
                 </p>
@@ -48,6 +51,9 @@
                 </p>
                 <p class="home__description" th:if="${status == 500}">
                     Parece que hubo un fallo interno<br> estamos trabajando en ello.
+                </p>
+                <p class="home__description" th:if="${status != 500 && status != 404 && status != 403}">
+                    Parece que ocurrió un <br> inesperado, intente nuevamente.
                 </p>
                 <a  th:href="@{/}"  class="home__button">
                     Volver al inicio
@@ -64,6 +70,10 @@
             </div>
             <div class="home__img" th:if="${status == 500}">
                 <img src="https://em-content.zobj.net/source/microsoft-teams/337/skull_1f480.png" alt="">
+                <div class="home__shadow"></div>
+            </div>
+            <div class="home__img" th:if="${status != 500 && status != 404 && status != 403}">
+                <img src="https://em-content.zobj.net/source/microsoft-teams/337/fearful-face_1f628.png" alt="">
                 <div class="home__shadow"></div>
             </div>
         </div>

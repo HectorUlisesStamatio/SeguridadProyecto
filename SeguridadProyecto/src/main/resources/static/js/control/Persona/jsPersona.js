@@ -28,7 +28,7 @@ app.controller('gestionPersonasController', ['$scope', 'SweetAlert', 'requestSer
     $scope.consultarPersona = () =>{
         requestService.getRequest("/api/admin/personas/listar",
             (success) => {
-                    $scope.personas = success.data;
+                    $scope.personas = success.data.result;
                     $scope.personas =  $scope.personas.map(persona => ({...persona, nombre: persona.nombre + " " + persona.apellidoPaterno + " " +  persona.apellidoMaterno }))
             },
             (error) => $scope.errorhttp(error.status)
@@ -39,7 +39,7 @@ app.controller('gestionPersonasController', ['$scope', 'SweetAlert', 'requestSer
     $scope.mdlModificarPersona = (persona) =>{
         requestService.getRequest("/api/admin/personas/"+persona.id,
             (success) => {
-                $scope.personaAux = success.data;
+                $scope.personaAux = success.data.result;
             },
             (error) => {
                 mdlModificarPersona.hide()
@@ -109,7 +109,7 @@ app.controller('gestionPersonasController', ['$scope', 'SweetAlert', 'requestSer
     $scope.mdlDetallePersona = (persona) =>{
         requestService.getRequest("/api/admin/personas/"+persona.id,
             (success) => {
-                $scope.personaDetalle = angular.copy(success.data);
+                $scope.personaDetalle = angular.copy(success.data.result);
             },
             (error) => {
                 $scope.errorhttp(error.status)
