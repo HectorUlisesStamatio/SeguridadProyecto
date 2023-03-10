@@ -1,7 +1,0 @@
-2023-03-10 08:56:40.149  WARN 6228 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-03-10 08:56:48.289  INFO 6228 --- [http-nio-8080-exec-5] m.e.u.c.admin.AdminPersonasController    : Se mostró exitosamente a las personas registradas
-personas2023-03-10 09:20:12.619  WARN 14348 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-03-10 09:21:02.144  INFO 14348 --- [http-nio-8080-exec-4] m.e.u.c.admin.AdminPersonasController    : Se mostró exitosamente a las personas registradas
-2023-03-10 09:21:13.825  INFO 14348 --- [http-nio-8080-exec-6] m.e.u.c.admin.AdminPersonasController    : Se consultó correctamente a la persona
-2023-03-10 09:21:17.987  INFO 14348 --- [http-nio-8080-exec-10] m.e.u.c.admin.AdminPersonasController    : Se eliminó correctamente a la persona
-2023-03-10 09:21:18.041  INFO 14348 --- [http-nio-8080-exec-9] m.e.u.c.admin.AdminPersonasController    : Se mostró exitosamente a las personas registradas
