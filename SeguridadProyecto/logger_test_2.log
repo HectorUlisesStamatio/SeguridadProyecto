@@ -1,3 +1,0 @@
-2023-03-07 09:00:10.281  WARN 8292 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-03-07 09:09:18.205  WARN 4256 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-03-07 09:09:20.900  WARN 4256 --- [http-nio-8080-exec-1] m.e.u.c.admin.AdminPersonasController    : 
